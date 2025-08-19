@@ -1,0 +1,10 @@
+pre-commit:
+  commands:
+    biome:
+      run: cd frontend && bunx biome check --write . --no-errors-on-unmatched --files-ignore-unknown=true --colors=off
+      stage_fixed: true
+
+pre-push:
+  commands:
+    biome:
+      run: cd frontend && bunx biome check . --no-errors-on-unmatched --files-ignore-unknown=true --colors=off --error-on-warnings
