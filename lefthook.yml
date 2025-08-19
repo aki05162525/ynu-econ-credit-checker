@@ -2,7 +2,7 @@ pre-commit:
   commands:
     biome:
       glob: "frontend/src/**/*.{ts,tsx,json}"
-      run: cd frontend && bunx biome check --write . --no-errors-on-unmatched --files-ignore-unknown=true --colors=off
+      run: cd frontend && bunx biome check --write . --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
       stage_fixed: true
 
 pre-push:
