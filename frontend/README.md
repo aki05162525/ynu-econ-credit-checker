@@ -5,12 +5,11 @@
 
 ```shell
 mise install
+bun install
 ```
 
 ## Run locally
 
 ```shell
-cd frontend
-bun install   # 初回のみ
 bun run dev
 ```
