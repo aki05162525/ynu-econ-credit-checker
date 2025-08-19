@@ -6,7 +6,9 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["src/**/*.{ts,tsx,json}"],
+		"includes": [
+			"src/**/*.{ts,tsx,json}"
+		],
 		"ignoreUnknown": false
 	},
 	"formatter": {
@@ -18,8 +20,8 @@
 		"rules": {
 			"recommended": true,
 			"correctness": {
-				"noUnusedVariables": "warn",
-				"noUnusedImports": "warn"
+				"noUnusedVariables": "error",
+				"noUnusedImports": "error"
 			}
 		}
 	},
