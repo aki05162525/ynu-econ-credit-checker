@@ -1,17 +1,12 @@
 pre-commit:
   parallel: true
   commands:
-    format:
+    biome:
       glob: "frontend/src/**/*.{ts,tsx,json}"
-      run: cd frontend && bun run fix:style
-      stage_fixed: true
-
-    lint-fix:
-      glob: "frontend/src/**/*.{ts,tsx,json}"
-      run: cd frontend && bun run fix:code
+      run: cd frontend && bun run check --write {staged_files}
       stage_fixed: true
 
 pre-push:
   commands:
-    check-all:
+    biome:
       run: cd frontend && bun run check
