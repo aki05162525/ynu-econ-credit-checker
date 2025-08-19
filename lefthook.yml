@@ -3,12 +3,12 @@ pre-commit:
   commands:
     format:
       glob: "frontend/src/**/*.{ts,tsx,json}"
-      run: cd frontend && bun run fix:style {staged_files}
+      run: cd frontend && bun run fix:style
       stage_fixed: true
 
     lint-fix:
       glob: "frontend/src/**/*.{ts,tsx,json}"
-      run: cd frontend && bun run fix:code {staged_files}
+      run: cd frontend && bun run fix:code
       stage_fixed: true
 
 pre-push:
