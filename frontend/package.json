@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint:code": "biome lint ./",
+    "lint:style": "biome format ./",
+    "fix:style": "biome format --write ./",
+    "fix:code": "biome lint --apply ./",
+    "check": "biome check ."
   },
   "dependencies": {
     "react": "19.1.0",
