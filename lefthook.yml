@@ -1,0 +1,17 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "frontend/src/**/*.{ts,tsx,json}"
+      run: cd frontend && bun run fix:style {staged_files}
+      stage_fixed: true
+
+    lint-fix:
+      glob: "frontend/src/**/*.{ts,tsx,json}"
+      run: cd frontend && bun run fix:code {staged_files}
+      stage_fixed: true
+
+pre-push:
+  commands:
+    check-all:
+      run: cd frontend && bun run check
