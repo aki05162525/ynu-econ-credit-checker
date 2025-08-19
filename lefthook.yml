@@ -1,12 +1,11 @@
 pre-commit:
-  parallel: true
   commands:
     biome:
       glob: "frontend/src/**/*.{ts,tsx,json}"
-      run: cd frontend && bun run check --write {staged_files}
+      run: cd frontend && bunx biome check --write . --no-errors-on-unmatched --files-ignore-unknown=true --colors=off
       stage_fixed: true
 
 pre-push:
   commands:
     biome:
-      run: cd frontend && bun run check
+      run: cd frontend && bunx biome check . --no-errors-on-unmatched --files-ignore-unknown=true --colors=off
