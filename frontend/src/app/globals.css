@@ -1,19 +1,14 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* ブランドカラー（Cyan系） */
+  --color-brand: oklch(52% 0.105 223.128); /* Cyan-700 (プライマリ) */
+  --color-brand-sec: oklch(60.9% 0.126 221.723); /* Cyan-600 (セカンダリ) */
+  --color-brand-ter: oklch(30.2% 0.056 229.695); /* Cyan-950 (ターシャリ) */
+  --color-brand-bg: oklch(98.4% 0.019 200.873); /* Cyan-50 (背景色) */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* サポートカラー */
+  --color-success: oklch(44.8% 0.119 151.328); /* 成功: グリーン */
+  --color-warning: oklch(47% 0.157 37.304); /* 警告: オレンジ */
+  --color-error: oklch(39.6% 0.141 25.723); /* エラー: レッド */
 }
