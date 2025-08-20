@@ -17,8 +17,8 @@ jobs:
       - name: Install deps
         run: bun install --frozen-lockfile
       - name: TypeScript check
-        run: bunx tsc --noEmit
+        run: bun run type-check
       - name: Biome check
-        run: bunx biome check . --no-errors-on-unmatched --files-ignore-unknown=true --error-on-warnings --colors=off
+        run: bun run ci
       - name: Next.js build
         run: bun run build
