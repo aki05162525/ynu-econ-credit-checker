@@ -21,6 +21,9 @@
 			"correctness": {
 				"noUnusedVariables": "warn",
 				"noUnusedImports": "error"
+			},
+			"nursery": {
+				"useSortedClasses": "error"
 			}
 		}
 	},
