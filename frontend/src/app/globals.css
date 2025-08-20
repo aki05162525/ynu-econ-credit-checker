@@ -12,11 +12,3 @@
   --color-warning: oklch(47% 0.157 37.304); /* 警告: オレンジ */
   --color-error: oklch(39.6% 0.141 25.723); /* エラー: レッド */
 }
-
-:root {
-  --font-noto-sans-jp: var(--font-noto-sans-jp);
-}
-
-body {
-  font-family: var(--font-noto-sans-jp);
-}

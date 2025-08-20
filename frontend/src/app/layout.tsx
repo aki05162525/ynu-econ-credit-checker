@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="ja">
-			<body className={notoSansJp.variable}>{children}</body>
+			<body className={notoSansJp.className}>{children}</body>
 		</html>
 	);
 }
