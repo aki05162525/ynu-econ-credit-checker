@@ -6,11 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint:code": "biome lint ./",
-    "lint:style": "biome format ./",
-    "fix:style": "biome format --write ./",
-    "fix:code": "biome lint --write ./",
-    "check": "biome check ."
+    "type-check": "tsc --noEmit",
+    "check:write": "biome check --write .",
+    "ci": "biome check . --no-errors-on-unmatched --files-ignore-unknown=true --error-on-warnings"
   },
   "dependencies": {
     "react": "19.1.0",
