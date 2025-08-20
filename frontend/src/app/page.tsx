@@ -1,5 +1,3 @@
-import "./globals.css";
-
 export default function Home() {
 	return (
 		<div className="min-h-screen bg-brand-bg p-8 space-y-6">
