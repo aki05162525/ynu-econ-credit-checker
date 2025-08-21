@@ -1,13 +1,9 @@
-const Header = () => {
+export const Header = () => {
 	return (
-		<nav className="flex items-center justify-between flex-wrap bg-brand p-6">
-			<div className="flex items-center flex-shrink-0 text-white mr-6">
-				<span className="font-semibold text-xl tracking-tight">
-					YNU-econ 単位チェッカー
-				</span>
+		<nav className="flex items-center justify-center bg-brand p-4">
+			<div className="text-white">
+				<span className="font-semibold text-xl ">YNU-econ 単位チェッカー</span>
 			</div>
 		</nav>
 	);
 };
-
-export default Header;
