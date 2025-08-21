@@ -1,6 +1,6 @@
 import { GraduationCap, University } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
-import { SubjectCard } from "@/components/common/SubjectCard";
+import { SubjectCard } from "./_components/SubjectCard";
 
 export default function Home() {
 	return (
