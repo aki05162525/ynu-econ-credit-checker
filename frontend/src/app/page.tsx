@@ -1,10 +1,12 @@
+import { Button } from "@/components/Button/Button";
+
 export default function Home() {
 	return (
-		<div className="min-h-screen bg-brand-bg p-8 space-y-6">
+		<div className="min-h-screen p-8 space-y-6">
 			<h1 className="text-3xl font-bold text-brand-ter mb-8">
 				Tailwind カラーテスト
 			</h1>
-
+			<Button>実験</Button>
 			{/* ブランドカラーボタン */}
 			<div className="space-y-4">
 				<button

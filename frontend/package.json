@@ -8,7 +8,9 @@
     "start": "next start",
     "type-check": "tsc --noEmit",
     "check:write": "biome check --write .",
-    "ci": "biome check . --no-errors-on-unmatched --files-ignore-unknown=true --error-on-warnings"
+    "ci": "biome check . --no-errors-on-unmatched --files-ignore-unknown=true --error-on-warnings",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "react": "19.1.0",
@@ -17,12 +19,15 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.6",
+    "@storybook/nextjs": "^9.1.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "lefthook": "^1.12.3",
+    "storybook": "^9.1.2",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "webpack": "5.101.2"
   }
 }
