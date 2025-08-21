@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "@/components/Header/Header";
 import { notoSansJp } from "../lib/fonts";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="ja">
+			<Header />
 			<body className={notoSansJp.className}>{children}</body>
 		</html>
 	);
