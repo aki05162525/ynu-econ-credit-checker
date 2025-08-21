@@ -16,25 +16,19 @@ frontend/src/
 │       │   └── result/
 │       │       └── page.tsx     # 判定結果画面
 │       │
-│       └── _components/         # check機能専用コンポーネント
-│           ├── CategoryForm.tsx
-│           ├── ResultCard.tsx
-│           └── ProgressBar.tsx
+│       └── _components/         # checkページ専用コンポーネント
+│           └── [ComponentName]/     # 各ページ固有コンポーネント
+│               ├── Component.tsx
+│               ├── Component.stories.tsx
+│               └── index.ts
 │
-├── components/                  # 全体共通UIコンポーネント
-│   ├── ui/                      # 基本UIコンポーネント
-│   │   ├── Button.tsx
-│   │   ├── Card.tsx
-│   │   └── Input.tsx
-│   │
-│   ├── layout/                  # レイアウト関連
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   └── Navbar.tsx
-│   │
+├── components/                  # 全ページ横断で再利用される共通UIコンポーネント
+│   ├── ui/                      # 基本UIコンポーネント（shadcn/ui準拠）
+│   ├── [ComponentName]/         # 各コンポーネント
+│   │   ├── Component.tsx
+│   │   ├── Component.stories.tsx
+│   │   └── index.ts
 │   └── common/                  # 共通機能コンポーネント
-│       ├── LoadingSpinner.tsx
-│       └── ErrorBoundary.tsx
 │
 ├── lib/                         # 共通関数・ビジネスロジック
 │   ├── calculations/            # 計算ロジック
@@ -76,8 +70,36 @@ frontend/src/
 
 ## 設計方針
 
+### コンポーネント組織戦略
+
+#### 1. 責務による分離
+- **`components/`**: 全ページ横断で再利用される共通UIコンポーネント
+- **`app/xxx/_components/`**: 特定のページ・機能でのみ使用されるコンポーネント
+
+#### 2. メリット
+- **再利用性の明確化**: どのコンポーネントが共通か一目瞭然
+- **責務の分離**: ページ固有の変更が他ページに影響しない
+- **依存関係の明確化**: コンポーネント間の関係が整理される
+- **メンテナンス性**: 修正範囲が特定しやすい
+
+#### 3. 昇格ルール
+`_components/` → `components/` への移行基準：
+- 2つ以上のページで同じコンポーネントが必要になった場合
+- 将来的な再利用の可能性が高い場合
+- UIデザインシステムの一部として位置づけられる場合
+
+#### 4. コンポーネント構成
+各コンポーネントは以下の構成：
+```
+ComponentName/
+├── ComponentName.tsx        # メインコンポーネント
+├── ComponentName.stories.tsx # Storybook用ストーリー
+└── index.ts                 # re-export
+```
+
+### その他の設計方針
+
 - **app/**: Next.js App Router によるページ管理
-- **components/**: 再利用可能な UI コンポーネント
 - **lib/**: ビジネスロジックと純粋関数を機能別に分類
 - **types/**: 型安全性の確保
 - **[category]**: 動的ルートで柔軟なカテゴリ対応
