@@ -9,8 +9,6 @@ frontend/src/
 │   ├── page.tsx                 # ホーム画面 (/)
 │   ├── globals.css              # Tailwind・ブランドカラー
 │   │
-│   ├── ui/
-│   │   └── fonts.ts             # Google Fonts設定
 │   │
 │   └── check/
 │       ├── [category]/          # /check/zengaku, /check/gakubu など
