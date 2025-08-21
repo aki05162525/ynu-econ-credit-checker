@@ -1,4 +1,4 @@
-import { GraduationCap, Users } from "lucide-react";
+import { GraduationCap, University } from "lucide-react";
 import { SubjectCard } from "@/components/SubjectCard";
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
 				</h2>
 			</div>
 			<div className="grid gap-4 md:grid-cols-2">
-				<SubjectCard title="全学教育科目" credits={34} icon={Users} />
+				<SubjectCard title="全学教育科目" credits={34} icon={University} />
 				<SubjectCard title="学部教育科目" credits={90} icon={GraduationCap} />
 			</div>
 		</div>
