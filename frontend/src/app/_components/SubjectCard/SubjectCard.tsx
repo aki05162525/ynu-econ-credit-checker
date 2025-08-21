@@ -1,5 +1,6 @@
 import { ChevronRight, type LucideIcon } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 export type SubjectCardProps = {
 	title: string;
@@ -18,7 +19,10 @@ export const SubjectCard = ({
 }: SubjectCardProps) => {
 	return (
 		<Card
-			className={`group relative overflow-hidden border-2 border-border bg-card hover:border-brand transition-all duration-300 hover:shadow-lg cursor-pointer ${className ?? ""}`}
+			className={cn(
+				"group relative overflow-hidden border-2 border-border bg-card hover:border-brand transition-all duration-300 hover:shadow-lg cursor-pointer",
+				className,
+			)}
 			onClick={onClick}
 		>
 			<div className="p-8">
