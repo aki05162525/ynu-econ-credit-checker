@@ -19,7 +19,7 @@ export default function Home() {
 						icon={University}
 					/>
 				</Link>
-				<Link href="check/gakubu">
+				<Link href="/check/gakubu">
 					<SubjectCard
 						title={SUBJECT_CATEGORIES.FACULTY_EDUCATION.title}
 						credits={SUBJECT_CATEGORIES.FACULTY_EDUCATION.credits}
