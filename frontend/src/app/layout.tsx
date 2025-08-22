@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { notoSansJp } from "../lib/fonts";
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 	return (
 		<html lang="ja">
 			<body className={notoSansJp.className}>
-				<Header />
+				<Link href="/">
+					<Header />
+				</Link>
 				<main className="max-w-2xl mx-auto">{children}</main>
 			</body>
 		</html>
