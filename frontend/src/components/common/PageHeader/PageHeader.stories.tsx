@@ -24,8 +24,7 @@ export const TitleOnly: Story = {
 
 export const LongTitle: Story = {
 	args: {
-		title:
-			"とても長いタイトルの例：横浜国立大学経済学部単位チェッカーアプリケーション",
-		subtitle: "長いタイトルでもレイアウトが崩れないことを確認します。",
+		title: "履修単位（学部教育科目）",
+		subtitle: "取得済みの単位を入力してください。",
 	},
 };
