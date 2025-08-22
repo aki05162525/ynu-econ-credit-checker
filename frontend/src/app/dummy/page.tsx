@@ -2,12 +2,12 @@
 
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import { login } from "./action";
 import { loginSchema } from "./shema";
 
-export function LoginForm() {
-	const [lastResult, action] = useFormState(login, undefined);
+export default function LoginForm() {
+	const [lastResult, action] = useActionState(login, undefined);
 	const [form, fields] = useForm({
 		lastResult,
 		onValidate({ formData }) {
@@ -58,7 +58,7 @@ export function LoginForm() {
 					/>
 				</div>
 			</label>
-			<button type="button">Login</button>
+			<button type="submit">Login</button>
 		</form>
 	);
 }
