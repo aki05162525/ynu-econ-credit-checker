@@ -5,6 +5,9 @@ import { parseWithZod } from "@conform-to/zod";
 import { useActionState } from "react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { submitZengakuForm } from "../_actions/zengaku";
+import { FormSection } from "../_components/FormSection";
+import { NumberField } from "../_components/NumberField";
+import { RadioField } from "../_components/RadioField";
 import { zengakuSchema } from "../_schemas/zengaku";
 
 export default function ZengakuPage() {
@@ -31,140 +34,30 @@ export default function ZengakuPage() {
 				noValidate
 				className="space-y-6"
 			>
-				{/* 基礎科目 */}
-				<div className="space-y-4">
-					<h3 className="text-lg font-semibold">基礎科目</h3>
+				<FormSection title="基礎科目">
+					<NumberField field={fields.humanities} label="人文科学系" />
+					<NumberField field={fields.naturalScience} label="自然科学系" />
+					<NumberField
+						field={fields.generalEducationOthers}
+						label="全学教育その他"
+					/>
+				</FormSection>
 
-					<div>
-						<label className="block text-sm font-bold mb-2">
-							人文科学系
-							<input
-								type="number"
-								key={fields.humanities.key}
-								name={fields.humanities.name}
-								defaultValue={fields.humanities.initialValue}
-								className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-								min="0"
-							/>
-						</label>
-						<div className="text-error text-sm mt-1">
-							{fields.humanities.errors}
-						</div>
-					</div>
+				<FormSection title="外国語科目">
+					<NumberField field={fields.english} label="英語" />
+					<NumberField field={fields.foreignLanguage} label="初修外国語" />
+				</FormSection>
 
-					<div>
-						<label className="block text-sm font-bold mb-2">
-							自然科学系
-							<input
-								type="number"
-								key={fields.naturalScience.key}
-								name={fields.naturalScience.name}
-								defaultValue={fields.naturalScience.initialValue}
-								className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-								min="0"
-							/>
-						</label>
-						<div className="text-error text-sm mt-1">
-							{fields.naturalScience.errors}
-						</div>
-					</div>
-
-					<div>
-						<label className="block text-sm font-bold mb-2">
-							全学教育その他
-							<input
-								type="number"
-								key={fields.generalEducationOthers.key}
-								name={fields.generalEducationOthers.name}
-								defaultValue={fields.generalEducationOthers.initialValue}
-								className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-								min="0"
-							/>
-						</label>
-						<div className="text-error text-sm mt-1">
-							{fields.generalEducationOthers.errors}
-						</div>
-					</div>
-				</div>
-
-				{/* 外国語科目 */}
-				<div className="space-y-4">
-					<h3 className="text-lg font-semibold">外国語科目</h3>
-
-					<div>
-						<label className="block text-sm font-bold mb-2">
-							英語
-							<input
-								type="number"
-								key={fields.english.key}
-								name={fields.english.name}
-								defaultValue={fields.english.initialValue}
-								className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-								min="0"
-							/>
-						</label>
-						<div className="text-error text-sm mt-1">
-							{fields.english.errors}
-						</div>
-					</div>
-
-					<div>
-						<label className="block text-sm font-bold mb-2">
-							初修外国語
-							<input
-								type="number"
-								key={fields.foreignLanguage.key}
-								name={fields.foreignLanguage.name}
-								defaultValue={fields.foreignLanguage.initialValue}
-								className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-								min="0"
-							/>
-						</label>
-						<div className="text-error text-sm mt-1">
-							{fields.foreignLanguage.errors}
-						</div>
-					</div>
-				</div>
-
-				{/* 高度全学教育指定科目 */}
-				<div className="space-y-4">
-					<h3 className="text-lg font-semibold">高度全学教育指定科目</h3>
-
-					<div>
-						<div className="block text-sm font-bold mb-2">履修状況</div>
-						<div className="space-y-2">
-							<label className="flex items-center">
-								<input
-									type="radio"
-									key={fields.advancedEducation.key}
-									name={fields.advancedEducation.name}
-									value="unfinished"
-									defaultChecked={
-										fields.advancedEducation.initialValue === "unfinished"
-									}
-									className="mr-2"
-								/>
-								未修了
-							</label>
-							<label className="flex items-center">
-								<input
-									type="radio"
-									key={fields.advancedEducation.key}
-									name={fields.advancedEducation.name}
-									value="completed"
-									defaultChecked={
-										fields.advancedEducation.initialValue === "completed"
-									}
-									className="mr-2"
-								/>
-								修了済み
-							</label>
-						</div>
-						<div className="text-error text-sm mt-1">
-							{fields.advancedEducation.errors}
-						</div>
-					</div>
-				</div>
+				<FormSection title="高度全学教育指定科目">
+					<RadioField
+						field={fields.advancedEducation}
+						label="履修状況"
+						options={[
+							{ value: "unfinished", label: "未修了" },
+							{ value: "completed", label: "修了済み" },
+						]}
+					/>
+				</FormSection>
 
 				<button
 					type="submit"
