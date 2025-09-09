@@ -23,7 +23,7 @@ const RadioFieldWrapper = ({
 	defaultValue,
 	hasError,
 }: RadioFieldWrapperProps) => {
-	const [form, fields] = useForm({
+	const [_form, fields] = useForm({
 		onValidate({ formData }) {
 			return parseWithZod(formData, { schema: testSchema });
 		},
@@ -32,11 +32,11 @@ const RadioFieldWrapper = ({
 		},
 		...(hasError && {
 			lastResult: {
-				status: "error",
+				status: "error" as const,
 				error: {
 					testField: ["履修状況を選択してください"],
 				},
-			} as any,
+			},
 		}),
 	});
 

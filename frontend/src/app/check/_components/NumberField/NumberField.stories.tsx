@@ -17,7 +17,7 @@ const NumberFieldWrapper = ({
 	defaultValue?: string;
 	hasError?: boolean;
 }) => {
-	const [form, fields] = useForm({
+	const [_form, fields] = useForm({
 		onValidate({ formData }) {
 			return parseWithZod(formData, { schema: testSchema });
 		},
@@ -26,11 +26,11 @@ const NumberFieldWrapper = ({
 		},
 		...(hasError && {
 			lastResult: {
-				status: "error",
+				status: "error" as const,
 				error: {
 					testField: ["0以上で入力"],
 				},
-			} as any,
+			},
 		}),
 	});
 
