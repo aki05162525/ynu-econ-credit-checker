@@ -12,3 +12,12 @@ export const SUBJECT_CATEGORIES = {
 		credits: 90,
 	},
 } as const;
+
+export const ZENGAKU_REQ = {
+	humanities: 4,
+	naturalScience: 4,
+	english: 8,
+	foreignLanguage: 2,
+	others: 16,
+	advanced: 4, // completed = 4、unfinished = 0 で判定
+} as const;
