@@ -17,6 +17,15 @@ export default function ZengakuPage() {
 		onValidate({ formData }) {
 			return parseWithZod(formData, { schema: zengakuSchema });
 		},
+		onSubmit(_, { formData }) {
+			const submission = parseWithZod(formData, { schema: zengakuSchema });
+			if (submission.status === "success") {
+				localStorage.setItem(
+					"zengaku-credits",
+					JSON.stringify(submission.value),
+				);
+			}
+		},
 		shouldValidate: "onBlur",
 		shouldRevalidate: "onInput",
 	});
