@@ -20,10 +20,15 @@ export default function ZengakuPage() {
 		onSubmit(_, { formData }) {
 			const submission = parseWithZod(formData, { schema: zengakuSchema });
 			if (submission.status === "success") {
-				localStorage.setItem(
-					"zengaku-credits",
-					JSON.stringify(submission.value),
-				);
+				try {
+					localStorage.setItem(
+						"zengaku-credits",
+						JSON.stringify(submission.value),
+					);
+				} catch (error) {
+					console.error("localStorage保存に失敗:", error);
+					// ユーザーに通知（後述）
+				}
 			}
 		},
 		shouldValidate: "onBlur",
