@@ -54,8 +54,10 @@ export function judgeZengaku(input: ZengakuFormData): ZengakuResultV1 {
 	const othersOk = othersTotal >= ZENGAKU_REQ.others;
 	const othersShort = Math.max(0, ZENGAKU_REQ.others - othersTotal);
 
+	// 高度教養科目の特殊ルール：完了時のみ必要単位(4単位)を満たしたとみなす
+	// 未完了時は0単位扱いとし、他のカテゴリで取得した単位との重複を避ける
 	const advancedHave =
-		input.advancedEducation === "completed" ? ZENGAKU_REQ.advanced : 0; // 二重カウントしない
+		input.advancedEducation === "completed" ? ZENGAKU_REQ.advanced : 0;
 	const advOk = advancedHave >= ZENGAKU_REQ.advanced;
 	const advShort = Math.max(0, ZENGAKU_REQ.advanced - advancedHave);
 
