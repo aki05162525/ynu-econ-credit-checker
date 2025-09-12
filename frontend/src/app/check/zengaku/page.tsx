@@ -17,6 +17,20 @@ export default function ZengakuPage() {
 		onValidate({ formData }) {
 			return parseWithZod(formData, { schema: zengakuSchema });
 		},
+		onSubmit(_, { formData }) {
+			const submission = parseWithZod(formData, { schema: zengakuSchema });
+			if (submission.status === "success") {
+				try {
+					localStorage.setItem(
+						"zengaku-credits",
+						JSON.stringify(submission.value),
+					);
+				} catch (error) {
+					console.error("localStorage保存に失敗:", error);
+					// ユーザーに通知（後述）
+				}
+			}
+		},
 		shouldValidate: "onBlur",
 		shouldRevalidate: "onInput",
 	});
