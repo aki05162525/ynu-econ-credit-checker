@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { StatusBadge } from "@/app/check/_components/StatusBadge";
-import { SubjectMobileCard } from "@/app/check/_components/SubjectMobileCard";
-import { formatShortageUnits } from "@/app/check/_components/unitUtils";
+import {
+	formatShortageUnits,
+	StatusBadge,
+	SubjectMobileCard,
+} from "@/app/check/_components";
 import type { ZengakuFormData } from "@/app/check/_schemas/zengaku";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

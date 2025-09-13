@@ -1,5 +1,5 @@
-import { StatusBadge } from "./StatusBadge";
-import { formatShortageUnitsMobile } from "./unitUtils";
+import { StatusBadge } from "../StatusBadge";
+import { formatShortageUnitsMobile } from "../unitUtils";
 
 interface SubjectData {
 	have: number;
