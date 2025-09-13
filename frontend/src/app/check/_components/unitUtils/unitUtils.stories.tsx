@@ -3,7 +3,25 @@ import { formatShortageUnits, formatShortageUnitsMobile } from "./unitUtils";
 
 // ラッパーコンポーネントを作成してStorybookで表示しやすくする
 function UnitUtilsDemo() {
-	return <div>Unit Utils Functions</div>;
+	return (
+		<div className="p-4">
+			<h2 className="text-xl font-bold mb-4">Unit Utils Functions</h2>
+			<div className="space-y-3">
+				<div>
+					<h3 className="font-semibold text-lg">formatShortageUnits</h3>
+					<p className="text-muted-foreground">
+						デスクトップ表示用の不足単位フォーマット関数。不足がない場合は"-"を表示し、不足がある場合は太字で赤色の"数値単位"として表示します。
+					</p>
+				</div>
+				<div>
+					<h3 className="font-semibold text-lg">formatShortageUnitsMobile</h3>
+					<p className="text-muted-foreground">
+						モバイル表示用の不足単位フォーマット関数。デスクトップ版と同様の動作ですが、より軽量な表示スタイルを使用します。
+					</p>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 const meta = {
