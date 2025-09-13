@@ -1,0 +1,1 @@
+export { SubjectMobileCard } from "./SubjectMobileCard";

@@ -40,6 +40,7 @@ export default function ZengakuPage() {
 			<PageHeader
 				title="履修単位（全学教育科目）"
 				subtitle="取得済みの単位を入力してください。"
+				showHomeButton={true}
 			/>
 			<form
 				id={form.id}
@@ -53,7 +54,7 @@ export default function ZengakuPage() {
 					<NumberField field={fields.naturalScience} label="自然科学系" />
 					<NumberField
 						field={fields.generalEducationOthers}
-						label="全学教育その他"
+						label="全学教育その他（グローバル等）"
 					/>
 				</FormSection>
 
