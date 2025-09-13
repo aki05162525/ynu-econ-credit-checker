@@ -1,8 +1,18 @@
 "use client";
 
+import { CircleCheckBig, CircleX } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { ZengakuFormData } from "@/app/check/_schemas/zengaku";
 import { PageHeader } from "@/components/common/PageHeader";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table";
 import { judgeZengaku, type ZengakuResultV1 } from "@/lib/calculations/zengaku";
 
 export default function ZengakuResultPage() {
@@ -42,71 +52,168 @@ export default function ZengakuResultPage() {
 		);
 	}
 
+	const getStatusBadge = (isOk: boolean) => {
+		return (
+			<span
+				className={`inline-flex items-center justify-center w-8 h-8 rounded-full transition-colors ${
+					isOk
+						? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400"
+						: "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400"
+				}`}
+			>
+				{isOk ? (
+					<CircleCheckBig className="w-4 h-4" />
+				) : (
+					<CircleX className="w-4 h-4" />
+				)}
+			</span>
+		);
+	};
+
 	return (
-		<div className="min-h-screen p-8 space-y-8">
+		<div className="min-h-screen p-8 space-y-8 bg-brand-bg dark:bg-background">
 			<PageHeader
 				title="全学教育科目 判定結果"
-				subtitle="各科目の単位充足状況"
+				subtitle="各科目の単位取得状況"
 			/>
 
-			<div className="space-y-6">
-				<div className="border p-4 rounded-lg">
-					<h3 className="font-bold text-lg mb-2">人文科学系</h3>
-					<p>取得単位: {result.perCategory.humanities.have}単位</p>
-					<p>必要単位: {result.perCategory.humanities.need}単位</p>
-					<p>判定: {result.perCategory.humanities.ok ? "✓ 充足" : "× 不足"}</p>
-					<p>余剰単位: {result.perCategory.humanities.surplus}単位</p>
-				</div>
+			<Card className="border-brand/20 shadow-lg">
+				<CardHeader>
+					<CardTitle className="text-brand">単位取得状況一覧</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Table>
+						<TableHeader>
+							<TableRow className="border-brand/20">
+								<TableHead className="font-semibold text-brand">科目</TableHead>
+								<TableHead className="font-semibold text-brand">
+									取得単位
+								</TableHead>
+								<TableHead className="font-semibold text-brand">
+									必要単位
+								</TableHead>
+								<TableHead className="font-semibold text-brand">判定</TableHead>
+								<TableHead className="font-semibold text-brand">
+									余剰単位
+								</TableHead>
+							</TableRow>
+						</TableHeader>
+						<TableBody>
+							<TableRow className="hover:bg-brand-bg/50 dark:hover:bg-brand-ter/20">
+								<TableCell className="font-medium">人文科学系</TableCell>
+								<TableCell>{result.perCategory.humanities.have}単位</TableCell>
+								<TableCell>{result.perCategory.humanities.need}単位</TableCell>
+								<TableCell>
+									{getStatusBadge(result.perCategory.humanities.ok)}
+								</TableCell>
+								<TableCell>
+									{result.perCategory.humanities.surplus}単位
+								</TableCell>
+							</TableRow>
+							<TableRow className="hover:bg-brand-bg/50 dark:hover:bg-brand-ter/20">
+								<TableCell className="font-medium">自然科学系</TableCell>
+								<TableCell>
+									{result.perCategory.naturalScience.have}単位
+								</TableCell>
+								<TableCell>
+									{result.perCategory.naturalScience.need}単位
+								</TableCell>
+								<TableCell>
+									{getStatusBadge(result.perCategory.naturalScience.ok)}
+								</TableCell>
+								<TableCell>
+									{result.perCategory.naturalScience.surplus}単位
+								</TableCell>
+							</TableRow>
+							<TableRow className="hover:bg-brand-bg/50 dark:hover:bg-brand-ter/20">
+								<TableCell className="font-medium">英語</TableCell>
+								<TableCell>{result.perCategory.english.have}単位</TableCell>
+								<TableCell>{result.perCategory.english.need}単位</TableCell>
+								<TableCell>
+									{getStatusBadge(result.perCategory.english.ok)}
+								</TableCell>
+								<TableCell>{result.perCategory.english.surplus}単位</TableCell>
+							</TableRow>
+							<TableRow className="hover:bg-brand-bg/50 dark:hover:bg-brand-ter/20">
+								<TableCell className="font-medium">初修外国語</TableCell>
+								<TableCell>
+									{result.perCategory.foreignLanguage.have}単位
+								</TableCell>
+								<TableCell>
+									{result.perCategory.foreignLanguage.need}単位
+								</TableCell>
+								<TableCell>
+									{getStatusBadge(result.perCategory.foreignLanguage.ok)}
+								</TableCell>
+								<TableCell>
+									{result.perCategory.foreignLanguage.surplus}単位
+								</TableCell>
+							</TableRow>
+						</TableBody>
+					</Table>
+				</CardContent>
+			</Card>
 
-				<div className="border p-4 rounded-lg">
-					<h3 className="font-bold text-lg mb-2">自然科学系</h3>
-					<p>取得単位: {result.perCategory.naturalScience.have}単位</p>
-					<p>必要単位: {result.perCategory.naturalScience.need}単位</p>
-					<p>
-						判定: {result.perCategory.naturalScience.ok ? "✓ 充足" : "× 不足"}
-					</p>
-					<p>余剰単位: {result.perCategory.naturalScience.surplus}単位</p>
-				</div>
+			<div className="grid gap-6 lg:grid-cols-3">
+				<Card className="border-brand/20 shadow-lg lg:col-span-2">
+					<CardHeader>
+						<CardTitle className="text-brand">全学教育その他</CardTitle>
+					</CardHeader>
+					<CardContent className="space-y-3">
+						<div className="flex justify-between">
+							<span className="text-muted-foreground">直接取得単位:</span>
+							<span className="font-medium">
+								{result.perCategory.others.direct}単位
+							</span>
+						</div>
+						<div className="flex justify-between">
+							<span className="text-muted-foreground">余剰からの振替:</span>
+							<span className="font-medium">
+								{result.perCategory.others.fromSurplus}単位
+							</span>
+						</div>
+						<div className="flex justify-between">
+							<span className="text-muted-foreground">合計単位:</span>
+							<span className="font-medium">
+								{result.perCategory.others.total}単位
+							</span>
+						</div>
+						<div className="flex justify-between">
+							<span className="text-muted-foreground">必要単位:</span>
+							<span className="font-medium">
+								{result.perCategory.others.need}単位
+							</span>
+						</div>
+						<div className="flex justify-between items-center pt-2 border-t">
+							<span className="text-muted-foreground">判定:</span>
+							{getStatusBadge(result.perCategory.others.ok)}
+						</div>
+						{result.perCategory.others.shortage > 0 && (
+							<div className="flex justify-between text-red-600 dark:text-red-400">
+								<span>不足単位:</span>
+								<span className="font-medium">
+									{result.perCategory.others.shortage}単位
+								</span>
+							</div>
+						)}
+					</CardContent>
+				</Card>
 
-				<div className="border p-4 rounded-lg">
-					<h3 className="font-bold text-lg mb-2">英語</h3>
-					<p>取得単位: {result.perCategory.english.have}単位</p>
-					<p>必要単位: {result.perCategory.english.need}単位</p>
-					<p>判定: {result.perCategory.english.ok ? "✓ 充足" : "× 不足"}</p>
-					<p>余剰単位: {result.perCategory.english.surplus}単位</p>
-				</div>
-
-				<div className="border p-4 rounded-lg">
-					<h3 className="font-bold text-lg mb-2">初修外国語</h3>
-					<p>取得単位: {result.perCategory.foreignLanguage.have}単位</p>
-					<p>必要単位: {result.perCategory.foreignLanguage.need}単位</p>
-					<p>
-						判定: {result.perCategory.foreignLanguage.ok ? "✓ 充足" : "× 不足"}
-					</p>
-					<p>余剰単位: {result.perCategory.foreignLanguage.surplus}単位</p>
-				</div>
-
-				<div className="border p-4 rounded-lg">
-					<h3 className="font-bold text-lg mb-2">全学教育その他</h3>
-					<p>直接取得単位: {result.perCategory.others.direct}単位</p>
-					<p>余剰からの充当: {result.perCategory.others.fromSurplus}単位</p>
-					<p>合計単位: {result.perCategory.others.total}単位</p>
-					<p>必要単位: {result.perCategory.others.need}単位</p>
-					<p>判定: {result.perCategory.others.ok ? "✓ 充足" : "× 不足"}</p>
-					{result.perCategory.others.shortage > 0 && (
-						<p>不足単位: {result.perCategory.others.shortage}単位</p>
-					)}
-				</div>
-
-				<div className="border p-4 rounded-lg">
-					<h3 className="font-bold text-lg mb-2">高度全学教育指定科目</h3>
-					<p>取得単位: {result.perCategory.advanced.have}単位</p>
-					<p>必要単位: {result.perCategory.advanced.need}単位</p>
-					<p>判定: {result.perCategory.advanced.ok ? "✓ 充足" : "× 不足"}</p>
-					{result.perCategory.advanced.shortage > 0 && (
-						<p>不足単位: {result.perCategory.advanced.shortage}単位</p>
-					)}
-				</div>
+				<Card className="border-brand/20 shadow-lg flex flex-col justify-center">
+					<CardHeader className="pb-4">
+						<CardTitle className="text-brand text-center">高度全学</CardTitle>
+					</CardHeader>
+					<CardContent className="flex flex-col items-center space-y-4">
+						<div className="flex flex-col items-center space-y-2">
+							{getStatusBadge(result.perCategory.advanced.ok)}
+							<span className="text-sm text-muted-foreground">
+								{result.perCategory.advanced.ok
+									? "要件を満たしています"
+									: "要件を満たしていません"}
+							</span>
+						</div>
+					</CardContent>
+				</Card>
 			</div>
 		</div>
 	);

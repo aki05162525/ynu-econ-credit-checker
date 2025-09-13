@@ -53,7 +53,7 @@ export default function ZengakuPage() {
 					<NumberField field={fields.naturalScience} label="自然科学系" />
 					<NumberField
 						field={fields.generalEducationOthers}
-						label="全学教育その他"
+						label="全学教育その他（グローバル等）"
 					/>
 				</FormSection>
 
