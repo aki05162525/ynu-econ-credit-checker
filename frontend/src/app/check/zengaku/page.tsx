@@ -40,6 +40,7 @@ export default function ZengakuPage() {
 			<PageHeader
 				title="履修単位（全学教育科目）"
 				subtitle="取得済みの単位を入力してください。"
+				showHomeButton={true}
 			/>
 			<form
 				id={form.id}

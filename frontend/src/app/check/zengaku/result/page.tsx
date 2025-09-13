@@ -57,10 +57,11 @@ export default function ZengakuResultPage() {
 	}
 
 	return (
-		<div className="min-h-screen p-8 space-y-8 bg-brand-bg dark:bg-background">
+		<div className="min-h-screen p-8 space-y-8 ">
 			<PageHeader
 				title="全学教育科目 判定結果"
 				subtitle="各科目の単位取得状況"
+				showHomeButton={true}
 			/>
 
 			<Card className="border-brand/20 shadow-lg">
