@@ -1,7 +1,9 @@
 "use client";
 
-import { CircleCheckBig, CircleX } from "lucide-react";
 import { useEffect, useState } from "react";
+import { StatusBadge } from "@/app/check/_components/StatusBadge";
+import { SubjectMobileCard } from "@/app/check/_components/SubjectMobileCard";
+import { formatShortageUnits } from "@/app/check/_components/unitUtils";
 import type { ZengakuFormData } from "@/app/check/_schemas/zengaku";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -52,24 +54,6 @@ export default function ZengakuResultPage() {
 		);
 	}
 
-	const getStatusBadge = (isOk: boolean) => {
-		return (
-			<span
-				className={`inline-flex items-center justify-center w-8 h-8 rounded-full transition-colors ${
-					isOk
-						? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400"
-						: "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400"
-				}`}
-			>
-				{isOk ? (
-					<CircleCheckBig className="w-4 h-4" />
-				) : (
-					<CircleX className="w-4 h-4" />
-				)}
-			</span>
-		);
-	};
-
 	return (
 		<div className="min-h-screen p-8 space-y-8 bg-brand-bg dark:bg-background">
 			<PageHeader
@@ -108,21 +92,15 @@ export default function ZengakuResultPage() {
 								<TableRow className="hover:bg-brand-bg/50 dark:hover:bg-brand-ter/20">
 									<TableCell className="font-medium">人文科学系</TableCell>
 									<TableCell>
-										{getStatusBadge(result.perCategory.humanities.ok)}
+										<StatusBadge isOk={result.perCategory.humanities.ok} />
 									</TableCell>
 									<TableCell>
 										{result.perCategory.humanities.have}単位
 									</TableCell>
 									<TableCell>
-										{result.perCategory.humanities.ok ? (
-											"-"
-										) : (
-											<span className="text-red-600 dark:text-red-400 font-medium">
-												{result.perCategory.humanities.need -
-													result.perCategory.humanities.have}
-												単位
-											</span>
-										)}
+										{formatShortageUnits({
+											shortage: result.perCategory.humanities.shortage,
+										})}
 									</TableCell>
 									<TableCell>
 										{result.perCategory.humanities.surplus}単位
@@ -131,21 +109,15 @@ export default function ZengakuResultPage() {
 								<TableRow className="hover:bg-brand-bg/50 dark:hover:bg-brand-ter/20">
 									<TableCell className="font-medium">自然科学系</TableCell>
 									<TableCell>
-										{getStatusBadge(result.perCategory.naturalScience.ok)}
+										<StatusBadge isOk={result.perCategory.naturalScience.ok} />
 									</TableCell>
 									<TableCell>
 										{result.perCategory.naturalScience.have}単位
 									</TableCell>
 									<TableCell>
-										{result.perCategory.naturalScience.ok ? (
-											"-"
-										) : (
-											<span className="text-red-600 dark:text-red-400 font-medium">
-												{result.perCategory.naturalScience.need -
-													result.perCategory.naturalScience.have}
-												単位
-											</span>
-										)}
+										{formatShortageUnits({
+											shortage: result.perCategory.naturalScience.shortage,
+										})}
 									</TableCell>
 									<TableCell>
 										{result.perCategory.naturalScience.surplus}単位
@@ -154,19 +126,13 @@ export default function ZengakuResultPage() {
 								<TableRow className="hover:bg-brand-bg/50 dark:hover:bg-brand-ter/20">
 									<TableCell className="font-medium">英語</TableCell>
 									<TableCell>
-										{getStatusBadge(result.perCategory.english.ok)}
+										<StatusBadge isOk={result.perCategory.english.ok} />
 									</TableCell>
 									<TableCell>{result.perCategory.english.have}単位</TableCell>
 									<TableCell>
-										{result.perCategory.english.ok ? (
-											"-"
-										) : (
-											<span className="text-red-600 dark:text-red-400 font-medium">
-												{result.perCategory.english.need -
-													result.perCategory.english.have}
-												単位
-											</span>
-										)}
+										{formatShortageUnits({
+											shortage: result.perCategory.english.shortage,
+										})}
 									</TableCell>
 									<TableCell>
 										{result.perCategory.english.surplus}単位
@@ -175,21 +141,15 @@ export default function ZengakuResultPage() {
 								<TableRow className="hover:bg-brand-bg/50 dark:hover:bg-brand-ter/20">
 									<TableCell className="font-medium">初修外国語</TableCell>
 									<TableCell>
-										{getStatusBadge(result.perCategory.foreignLanguage.ok)}
+										<StatusBadge isOk={result.perCategory.foreignLanguage.ok} />
 									</TableCell>
 									<TableCell>
 										{result.perCategory.foreignLanguage.have}単位
 									</TableCell>
 									<TableCell>
-										{result.perCategory.foreignLanguage.ok ? (
-											"-"
-										) : (
-											<span className="text-red-600 dark:text-red-400 font-medium">
-												{result.perCategory.foreignLanguage.need -
-													result.perCategory.foreignLanguage.have}
-												単位
-											</span>
-										)}
+										{formatShortageUnits({
+											shortage: result.perCategory.foreignLanguage.shortage,
+										})}
 									</TableCell>
 									<TableCell>
 										{result.perCategory.foreignLanguage.surplus}単位
@@ -207,39 +167,11 @@ export default function ZengakuResultPage() {
 							{ name: "英語", data: result.perCategory.english },
 							{ name: "初修外国語", data: result.perCategory.foreignLanguage },
 						].map((subject) => (
-							<div
+							<SubjectMobileCard
 								key={subject.name}
-								className="border border-brand/20 rounded-lg p-4 space-y-3 bg-card"
-							>
-								<div className="flex items-center justify-between">
-									<h3 className="font-semibold text-brand">{subject.name}</h3>
-									{getStatusBadge(subject.data.ok)}
-								</div>
-								<div className="grid grid-cols-3 gap-2 text-sm">
-									<div className="text-center">
-										<div className="text-muted-foreground">取得</div>
-										<div className="font-medium">{subject.data.have}単位</div>
-									</div>
-									<div className="text-center">
-										<div className="text-muted-foreground">不足</div>
-										<div className="font-medium">
-											{subject.data.ok ? (
-												"-"
-											) : (
-												<span className="text-red-600 dark:text-red-400">
-													{subject.data.need - subject.data.have}単位
-												</span>
-											)}
-										</div>
-									</div>
-									<div className="text-center">
-										<div className="text-muted-foreground">余剰</div>
-										<div className="font-medium">
-											{subject.data.surplus}単位
-										</div>
-									</div>
-								</div>
-							</div>
+								name={subject.name}
+								data={subject.data}
+							/>
 						))}
 					</div>
 				</CardContent>
@@ -271,7 +203,7 @@ export default function ZengakuResultPage() {
 						</div>
 						<div className="flex justify-between items-center pt-2 border-t">
 							<span className="text-muted-foreground">判定:</span>
-							{getStatusBadge(result.perCategory.others.ok)}
+							<StatusBadge isOk={result.perCategory.others.ok} />
 						</div>
 						{result.perCategory.others.shortage > 0 && (
 							<div className="flex justify-between text-red-600 dark:text-red-400">
@@ -292,7 +224,7 @@ export default function ZengakuResultPage() {
 					</CardHeader>
 					<CardContent className="flex flex-col items-center space-y-4">
 						<div className="flex flex-col items-center space-y-2">
-							{getStatusBadge(result.perCategory.advanced.ok)}
+							<StatusBadge isOk={result.perCategory.advanced.ok} />
 							<span className="text-sm text-muted-foreground text-center">
 								{result.perCategory.advanced.ok
 									? "要件を満たしています"

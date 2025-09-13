@@ -3,19 +3,33 @@ import { ZENGAKU_REQ } from "../constants/creditRequirements";
 
 export type ZengakuResultV1 = {
 	perCategory: {
-		humanities: { have: number; need: number; ok: boolean; surplus: number };
+		humanities: {
+			have: number;
+			need: number;
+			ok: boolean;
+			surplus: number;
+			shortage: number;
+		};
 		naturalScience: {
 			have: number;
 			need: number;
 			ok: boolean;
 			surplus: number;
+			shortage: number;
 		};
-		english: { have: number; need: number; ok: boolean; surplus: number };
+		english: {
+			have: number;
+			need: number;
+			ok: boolean;
+			surplus: number;
+			shortage: number;
+		};
 		foreignLanguage: {
 			have: number;
 			need: number;
 			ok: boolean;
 			surplus: number;
+			shortage: number;
 		};
 		others: {
 			direct: number;
@@ -49,6 +63,11 @@ export function judgeZengaku(input: ZengakuFormData): ZengakuResultV1 {
 	const engSur = Math.max(0, english - ZENGAKU_REQ.english);
 	const flSur = Math.max(0, foreignLanguage - ZENGAKU_REQ.foreignLanguage);
 
+	const humShort = Math.max(0, ZENGAKU_REQ.humanities - humanities);
+	const natShort = Math.max(0, ZENGAKU_REQ.naturalScience - naturalScience);
+	const engShort = Math.max(0, ZENGAKU_REQ.english - english);
+	const flShort = Math.max(0, ZENGAKU_REQ.foreignLanguage - foreignLanguage);
+
 	const fromSurplus = humSur + natSur + engSur + flSur;
 	const othersTotal = othersDirect + fromSurplus;
 	const othersOk = othersTotal >= ZENGAKU_REQ.others;
@@ -68,24 +87,28 @@ export function judgeZengaku(input: ZengakuFormData): ZengakuResultV1 {
 				need: ZENGAKU_REQ.humanities,
 				ok: humOk,
 				surplus: humSur,
+				shortage: humShort,
 			},
 			naturalScience: {
 				have: naturalScience,
 				need: ZENGAKU_REQ.naturalScience,
 				ok: natOk,
 				surplus: natSur,
+				shortage: natShort,
 			},
 			english: {
 				have: english,
 				need: ZENGAKU_REQ.english,
 				ok: engOk,
 				surplus: engSur,
+				shortage: engShort,
 			},
 			foreignLanguage: {
 				have: foreignLanguage,
 				need: ZENGAKU_REQ.foreignLanguage,
 				ok: flOk,
 				surplus: flSur,
+				shortage: flShort,
 			},
 			others: {
 				direct: othersDirect,
