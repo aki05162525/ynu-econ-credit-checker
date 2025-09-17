@@ -2,14 +2,11 @@
 
 import { parseWithZod } from "@conform-to/zod";
 import { redirect } from "next/navigation";
-import { zengakuSchema } from "../_schemas/zengaku";
+import { gakubuSchema } from "../_schemas/gakubu";
 
-export async function submitZengakuForm(
-	_prevState: unknown,
-	formData: FormData,
-) {
+export async function submitGakubForm(_prevState: unknown, formData: FormData) {
 	const submission = parseWithZod(formData, {
-		schema: zengakuSchema,
+		schema: gakubuSchema,
 	});
 
 	if (submission.status !== "success") {
@@ -18,6 +15,5 @@ export async function submitZengakuForm(
 
 	console.log("フォームデータ：", submission);
 
-	//結果ページにリダイレクト
-	redirect("/check/zengaku/result");
+	redirect("/check/gakubu/result");
 }
