@@ -6,10 +6,8 @@ export const gakubuSchema = z.object({
 	// 専門基礎科目
 	basicSpecialized: z.number().int().min(0, errorMessage),
 
-	// 基礎演習（チェックボックス）
-	basicSeminar: z.enum(["unfinished", "completed"], {
-		required_error: "履修状況を選択してください",
-	}),
+	// 基礎演習
+	basicSeminar: z.number().int().min(0, errorMessage),
 
 	// 専門基幹科目
 	coreSpecialized: z.number().int().min(0, errorMessage),
