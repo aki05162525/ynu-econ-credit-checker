@@ -1,15 +1,5 @@
 import type { GakubuFormData } from "@/app/check/_schemas/gakubu";
-
-const GAKUBU_REQ = {
-	basicSpecialized: 6,
-	basicSeminar: 2,
-	coreSpecialized: 20,
-	appliedSpecialized2: 12,
-	appliedSpecialized2MajorField: 8,
-	appliedSpecialized2MinorField: 4,
-	departmentEducationOthers: 50,
-	total: 90,
-} as const;
+import { GAKUBU_REQ } from "../constants/creditRequirements";
 
 export type GakubuResultV1 = {
 	perCategory: {
