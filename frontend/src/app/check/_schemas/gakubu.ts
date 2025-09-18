@@ -13,11 +13,9 @@ export const gakubuSchema = z.object({
 	coreSpecialized: z.number().int().min(0, errorMessage),
 
 	// 専門応用科目Ⅱ
-	appliedSpecialized2: z.object({
-		majorField: z.number().int().min(0, errorMessage),
-		minorField: z.number().int().min(0, errorMessage),
-		otherFields: z.number().int().min(0, errorMessage),
-	}),
+	appliedSpecialized2MajorField: z.number().int().min(0, errorMessage),
+	appliedSpecialized2MinorField: z.number().int().min(0, errorMessage),
+	appliedSpecialized2OtherFields: z.number().int().min(0, errorMessage),
 
 	// 学部教育科目その他
 	departmentEducationOthers: z.number().int().min(0, errorMessage),

@@ -27,7 +27,6 @@ export default function ZengakuPage() {
 					);
 				} catch (error) {
 					console.error("localStorage保存に失敗:", error);
-					// ユーザーに通知（後述）
 				}
 			}
 		},
