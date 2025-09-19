@@ -21,3 +21,14 @@ export const ZENGAKU_REQ = {
 	others: 16,
 	advanced: 4, // completed = 4、unfinished = 0 で判定
 } as const;
+
+export const GAKUBU_REQ = {
+	basicSpecialized: 6,
+	basicSeminar: 2,
+	coreSpecialized: 20,
+	appliedSpecialized2: 12,
+	appliedSpecialized2MajorField: 8,
+	appliedSpecialized2MinorField: 4,
+	departmentEducationOthers: 50,
+	total: 90,
+} as const;
