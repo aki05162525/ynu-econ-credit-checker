@@ -69,7 +69,7 @@ export default function GakubuPage() {
 				<FormSection title="その他">
 					<NumberField
 						field={fields.departmentEducationOthers}
-						label="特殊講義・経営科目等"
+						label="専門応用Ⅰ・特殊講義・経営科目等"
 					/>
 				</FormSection>
 				<button
