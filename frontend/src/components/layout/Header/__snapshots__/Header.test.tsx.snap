@@ -1,0 +1,39 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header コンポーネントスナップショットテスト > カスタムタイトルで表示される 1`] = `
+<div>
+  <header
+    class="flex items-center justify-center bg-brand p-4 shadow-sm"
+  >
+    <a
+      class="text-white hover:text-gray-200 transition-colors"
+      href="/"
+    >
+      <h1
+        class="font-semibold text-xl"
+      >
+        単位チェックアプリ
+      </h1>
+    </a>
+  </header>
+</div>
+`;
+
+exports[`Header コンポーネントスナップショットテスト > デフォルトのタイトルで表示される 1`] = `
+<div>
+  <header
+    class="flex items-center justify-center bg-brand p-4 shadow-sm"
+  >
+    <a
+      class="text-white hover:text-gray-200 transition-colors"
+      href="/"
+    >
+      <h1
+        class="font-semibold text-xl"
+      >
+        YNU-econ 単位チェッカー
+      </h1>
+    </a>
+  </header>
+</div>
+`;
