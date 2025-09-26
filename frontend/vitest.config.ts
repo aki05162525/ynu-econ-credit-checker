@@ -1,5 +1,5 @@
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vitest/config";
+import { coverageConfigDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig({
 	plugins: [react()],
@@ -8,8 +8,16 @@ export default defineConfig({
 		setupFiles: "./vitest.setup.ts",
 		globals: true,
 		coverage: {
-			provider: "istanbul",
+			provider: "v8",
 			reporter: ["text", "json", "html"],
+			include: ["src/**/*.{ts,tsx,js,jsx}"],
+			exclude: [
+				...coverageConfigDefaults.exclude,
+				"**/*.stories.{ts,tsx,js,jsx}",
+				"**/*.test.{ts,tsx,js,jsx}",
+				"**/index.{ts,tsx,js,jsx}",
+				"src/components/ui/**", // shadcn/ui コンポーネントを除外
+			],
 		},
 	},
 });
