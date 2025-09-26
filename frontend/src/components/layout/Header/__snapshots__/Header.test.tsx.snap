@@ -1,0 +1,115 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header component > renders with custom title 1`] = `
+<div>
+  <header
+    class="flex items-center justify-center bg-brand p-4 shadow-sm"
+  >
+    <a
+      class="text-white hover:text-gray-200 transition-colors"
+      href="/"
+    >
+      <h1
+        class="font-semibold text-xl"
+      >
+        単位チェックアプリ
+      </h1>
+    </a>
+  </header>
+</div>
+`;
+
+exports[`Header component > renders with default title 1`] = `
+<div>
+  <header
+    class="flex items-center justify-center bg-brand p-4 shadow-sm"
+  >
+    <a
+      class="text-white hover:text-gray-200 transition-colors"
+      href="/"
+    >
+      <h1
+        class="font-semibold text-xl"
+      >
+        YNU-econ 単位チェッカー
+      </h1>
+    </a>
+  </header>
+</div>
+`;
+
+exports[`Header コンポーネント > renders with custom title 1`] = `
+<div>
+  <header
+    class="flex items-center justify-center bg-brand p-4 shadow-sm"
+  >
+    <a
+      class="text-white hover:text-gray-200 transition-colors"
+      href="/"
+    >
+      <h1
+        class="font-semibold text-xl"
+      >
+        単位チェックアプリ
+      </h1>
+    </a>
+  </header>
+</div>
+`;
+
+exports[`Header コンポーネント > renders with default title 1`] = `
+<div>
+  <header
+    class="flex items-center justify-center bg-brand p-4 shadow-sm"
+  >
+    <a
+      class="text-white hover:text-gray-200 transition-colors"
+      href="/"
+    >
+      <h1
+        class="font-semibold text-xl"
+      >
+        YNU-econ 単位チェッカー
+      </h1>
+    </a>
+  </header>
+</div>
+`;
+
+exports[`Header コンポーネント > カスタムタイトルで表示される 1`] = `
+<div>
+  <header
+    class="flex items-center justify-center bg-brand p-4 shadow-sm"
+  >
+    <a
+      class="text-white hover:text-gray-200 transition-colors"
+      href="/"
+    >
+      <h1
+        class="font-semibold text-xl"
+      >
+        単位チェックアプリ
+      </h1>
+    </a>
+  </header>
+</div>
+`;
+
+exports[`Header コンポーネント > デフォルトのタイトルで表示される 1`] = `
+<div>
+  <header
+    class="flex items-center justify-center bg-brand p-4 shadow-sm"
+  >
+    <a
+      class="text-white hover:text-gray-200 transition-colors"
+      href="/"
+    >
+      <h1
+        class="font-semibold text-xl"
+      >
+        YNU-econ 単位チェッカー
+      </h1>
+    </a>
+  </header>
+</div>
+`;
