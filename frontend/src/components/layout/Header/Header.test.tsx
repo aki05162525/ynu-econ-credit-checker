@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 import { Header } from "../Header";
 
-//todo スナップショットテストはこのコンポーネントでは不要だが練習のため取っておく
+//TODO スナップショットテストはこのコンポーネントでは不要だが練習のため取っておく
 describe("Header コンポーネントスナップショットテスト", () => {
 	test("デフォルトのタイトルで表示される", () => {
 		const { container } = render(<Header />);
