@@ -6,7 +6,7 @@ describe("PageHeader コンポーネント", () => {
 	test("タイトルが表示される", () => {
 		render(<PageHeader title="タイトル" />);
 		expect(
-			screen.getByRole("heading", { level: 1, name: "タイトル" }),
+			screen.getByRole("heading", { level: 1, name: "hoge" }),
 		).toBeInTheDocument();
 	});
 
